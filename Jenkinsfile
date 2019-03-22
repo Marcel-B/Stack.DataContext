@@ -19,7 +19,7 @@ node {
 
     stage('restore') {
         gitlabCommitStatus("restore") {
-			sh 'dotnet restore'
+			sh 'dotnet restore --configfile NuGet.config'
 		}
     }
 
