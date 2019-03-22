@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Abstract
 {
-    class MeasureContext : DbContext
+    public class MeasureContext : DbContext
     {
         private readonly ILogger<MeasureContext> _logger;
 
