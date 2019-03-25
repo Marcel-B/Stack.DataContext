@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
-    public class ActiveMeasruePointRepository : IDataStore<ActiveMeasurePoint>
+    public class ActiveMeasurePointRepository : IDataStore<ActiveMeasurePoint>
     {
         private readonly MeasureContext _context;
-        private readonly ILogger<ActiveMeasruePointRepository> _logger;
+        private readonly ILogger<ActiveMeasurePointRepository> _logger;
 
-        public ActiveMeasruePointRepository(
+        public ActiveMeasurePointRepository(
             MeasureContext context,
-            ILogger<ActiveMeasruePointRepository> logger)
+            ILogger<ActiveMeasurePointRepository> logger)
         {
             _context = context;
             _logger = logger;
