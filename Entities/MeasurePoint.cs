@@ -14,6 +14,7 @@ namespace com.b_velop.stack.DataContext.Entities
         public string Display { get; set; }
         public double Max { get; set; }
         public double Min { get; set; }
+        public string ExternId { get; set; }
 
         public Guid Unit { get; set; }
         public Guid Location { get; set; }
