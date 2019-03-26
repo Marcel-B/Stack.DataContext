@@ -50,6 +50,7 @@ namespace com.b_velop.stack.DataContext.Repository
                 tmp.Max = value.Max;
                 tmp.Min = value.Min;
                 tmp.Unit = value.Unit;
+                tmp.ExternId = value.ExternId;
                 await _context.SaveChangesAsync();
                 return tmp;
             }
