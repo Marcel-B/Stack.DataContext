@@ -22,18 +22,7 @@ namespace com.b_velop.stack.DataContext.Repository
         }
 
         public async Task<MeasureValue> DeleteAsync(MeasureValue value)
-        {
-            try
-            {
-                var result = await DeleteAsync(value.Id);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(1111, ex, $"Error");
-                return null;
-            }
-        }
+            => await DeleteAsync(value.Id);
 
         public async Task<MeasureValue> DeleteAsync(Guid id)
         {
@@ -48,13 +37,27 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(1111, ex, $"Error");
+                _logger.LogError(2833, ex, $"Error occurred while deleting '{id}.'", id);
                 return null;
             }
         }
 
         public async Task<IEnumerable<MeasureValue>> GetAllAsync()
             => await _context.MeasureValues.ToListAsync();
+
+        public async Task<MeasureValue> GetAsync(Guid id)
+        {
+            try
+            {
+                var current = await _context.MeasureValues.FirstOrDefaultAsync(x => x.Id == id);
+                return current;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(2831, ex, $"Error occurred while getting '{id}'.", id);
+                return null;
+            }
+        }
 
         public async Task<MeasureValue> SaveAsync(MeasureValue value)
         {
@@ -66,7 +69,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(1111, ex, $"Error");
+                _logger.LogError(2832, ex, $"Error occurred while inserting '{value.Id}'.", value);
                 return null;
             }
         }
@@ -81,7 +84,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(1111, ex, $"Error");
+                _logger.LogError(2835, ex, $"Error occurred while inserting bulk.", values);
                 return -1;
             };
         }
@@ -106,7 +109,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(1111, ex, $"Error");
+                _logger.LogError(2834, ex, $"Error occurred while updating '{id}'.", id, value);
                 return null;
             }
         }

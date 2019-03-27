@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
-    public class MeasurePointsRepository : IDataStore<MeasurePoint>
+    public class MeasurePointRepository : IDataStore<MeasurePoint>
     {
-        private readonly ILogger<MeasurePointsRepository> _logger;
+        private readonly ILogger<MeasurePointRepository> _logger;
         private readonly MeasureContext _context;
 
-        public MeasurePointsRepository(
+        public MeasurePointRepository(
             MeasureContext context,
-            ILogger<MeasurePointsRepository> logger)
+            ILogger<MeasurePointRepository> logger)
         {
             _context = context;
             _logger = logger;
@@ -32,7 +32,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222, ex, $"Error occurred while insert new MeasurePoint '{value}'", value);
+                _logger.LogError(2832, ex, $"Error occurred while inserting '{value}'", value);
                 return null;
             }
         }
@@ -56,7 +56,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222, ex, $"Error occurred while updating MeasurePoint '{id}'", id, value);
+                _logger.LogError(2834, ex, $"Error occurred while updating '{id}'", id, value);
                 return null;
             }
         }
@@ -77,7 +77,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222, ex, $"Error occurred while deleting MeasurePoint '{id}'.", id);
+                _logger.LogError(2833, ex, $"Error occurred while deleting '{id}'.", id);
                 return null;
             }
         }
@@ -96,8 +96,22 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger. LogError(2222, ex, $"Error occurred while save MeasurePoints.", values);
+                _logger. LogError(2835, ex, $"Error occurred while inserting bulk.", values);
                 return -1;
+            }
+        }
+
+        public async Task<MeasurePoint> GetAsync(Guid id)
+        {
+            try
+            {
+                var current = await _context.MeasurePoints.FirstOrDefaultAsync(x => x.Id == id);
+                return current;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(2831, ex, $"Error occurred while getting '{id}'.", id);
+                return null;
             }
         }
     }
