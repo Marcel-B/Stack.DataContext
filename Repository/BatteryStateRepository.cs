@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using com.b_velop.stack.DataContext.Entities;
 using com.b_velop.stack.DataContext.Abstract;
 using Microsoft.Extensions.Logging;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace com.b_velop.stack.DataContext.Repository
@@ -22,10 +21,12 @@ namespace com.b_velop.stack.DataContext.Repository
             _logger = logger;
         }
 
-        public async Task<BatteryState> DeleteAsync(BatteryState value)
+        public async Task<BatteryState> DeleteAsync(
+            BatteryState value)
             => await DeleteAsync(value.Id);
 
-        public async Task<BatteryState> DeleteAsync(Guid id)
+        public async Task<BatteryState> DeleteAsync(
+            Guid id)
         {
             try
             {
@@ -48,7 +49,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<IEnumerable<BatteryState>> GetAllAsync()
             => await _context.BatteryStates.ToListAsync();
 
-        public async Task<BatteryState> GetAsync(Guid id)
+        public async Task<BatteryState> GetAsync(
+            Guid id)
         {
             try
             {
@@ -62,7 +64,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<BatteryState> SaveAsync(BatteryState value)
+        public async Task<BatteryState> SaveAsync(
+            BatteryState value)
         {
             try
             {
@@ -77,7 +80,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<int> SaveBulkAsync(BatteryState[] values)
+        public async Task<int> SaveBulkAsync(
+            BatteryState[] values)
         {
             try
             {
@@ -92,17 +96,20 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<BatteryState> UpdateAsync(Guid id, BatteryState value)
+        public async Task<BatteryState> UpdateAsync(
+            Guid id,
+            BatteryState value)
         {
             try
             {
-                var tmp = await _context.BatteryStates.FirstOrDefaultAsync(x => x.Id == id);
-                _context.Entry(tmp).State = EntityState.Modified;
-                tmp.Point = value.Point;
-                tmp.State = value.State;
-                tmp.Timestamp = value.Timestamp;
+                var current = await _context.BatteryStates.FirstOrDefaultAsync(x => x.Id == id);
+                _context.Entry(current).State = EntityState.Modified;
+                current.Point = value.Point;
+                current.State = value.State;
+                current.Timestamp = value.Timestamp;
+                current.Updated = DateTimeOffset.Now;
                 await _context.SaveChangesAsync();
-                return tmp;
+                return current;
             }
             catch (Exception ex)
             {

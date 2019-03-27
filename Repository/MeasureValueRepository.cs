@@ -10,8 +10,8 @@ namespace com.b_velop.stack.DataContext.Repository
 {
     public class MeasureValueRepository : IDataStore<MeasureValue>
     {
-        private MeasureContext _context;
-        private ILogger<MeasureValueRepository> _logger;
+        private readonly MeasureContext _context;
+        private readonly ILogger<MeasureValueRepository> _logger;
 
         public MeasureValueRepository(
             ILogger<MeasureValueRepository> logger,
@@ -21,10 +21,12 @@ namespace com.b_velop.stack.DataContext.Repository
             _logger = logger;
         }
 
-        public async Task<MeasureValue> DeleteAsync(MeasureValue value)
+        public async Task<MeasureValue> DeleteAsync(
+            MeasureValue value)
             => await DeleteAsync(value.Id);
 
-        public async Task<MeasureValue> DeleteAsync(Guid id)
+        public async Task<MeasureValue> DeleteAsync(
+            Guid id)
         {
             try
             {
@@ -45,7 +47,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<IEnumerable<MeasureValue>> GetAllAsync()
             => await _context.MeasureValues.ToListAsync();
 
-        public async Task<MeasureValue> GetAsync(Guid id)
+        public async Task<MeasureValue> GetAsync(
+            Guid id)
         {
             try
             {
@@ -59,7 +62,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<MeasureValue> SaveAsync(MeasureValue value)
+        public async Task<MeasureValue> SaveAsync(
+            MeasureValue value)
         {
             try
             {
@@ -74,7 +78,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<int> SaveBulkAsync(MeasureValue[] values)
+        public async Task<int> SaveBulkAsync(
+            MeasureValue[] values)
         {
             try
             {
@@ -89,7 +94,9 @@ namespace com.b_velop.stack.DataContext.Repository
             };
         }
 
-        public async Task<MeasureValue> UpdateAsync(Guid id, MeasureValue value)
+        public async Task<MeasureValue> UpdateAsync(
+            Guid id,
+            MeasureValue value)
         {
             try
             {
@@ -104,6 +111,7 @@ namespace com.b_velop.stack.DataContext.Repository
                 current.Point = value.Point;
                 current.Timestamp = value.Timestamp;
                 current.Value = value.Value;
+                current.Updated = DateTimeOffset.Now;
                 var result = await _context.SaveChangesAsync();
                 return current;
             }

@@ -21,7 +21,8 @@ namespace com.b_velop.stack.DataContext.Repository
             _logger = logger;
         }
 
-        public async Task<Unit> GetAsync(Guid id)
+        public async Task<Unit> GetAsync(
+            Guid id)
         {
             try
             {
@@ -36,7 +37,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<Unit> SaveAsync(Unit value)
+        public async Task<Unit> SaveAsync(
+            Unit value)
         {
             try
             {
@@ -51,7 +53,9 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<Unit> UpdateAsync(Guid id, Unit value)
+        public async Task<Unit> UpdateAsync(
+            Guid id,
+            Unit value)
         {
             try
             {
@@ -59,6 +63,7 @@ namespace com.b_velop.stack.DataContext.Repository
                 _context.Entry(current).State = EntityState.Modified;
                 current.Display = value.Display;
                 current.Name = value.Name;
+                current.Updated = DateTimeOffset.Now;
                 await _context.SaveChangesAsync();
                 return current;
             }
@@ -69,10 +74,12 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<Unit> DeleteAsync(Unit value)
+        public async Task<Unit> DeleteAsync(
+            Unit value)
             => await DeleteAsync(value.Id);
 
-        public async Task<Unit> DeleteAsync(Guid id)
+        public async Task<Unit> DeleteAsync(
+            Guid id)
         {
             try
             {
@@ -91,7 +98,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<IEnumerable<Unit>> GetAllAsync()
             => await _context.Units.ToListAsync();
 
-        public async Task<int> SaveBulkAsync(Unit[] values)
+        public async Task<int> SaveBulkAsync(
+            Unit[] values)
         {
             try
             {

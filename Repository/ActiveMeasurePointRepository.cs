@@ -59,10 +59,12 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<ActiveMeasurePoint> DeleteAsync(ActiveMeasurePoint value)
+        public async Task<ActiveMeasurePoint> DeleteAsync(
+            ActiveMeasurePoint value)
             => await DeleteAsync(value.Id);
 
-        public async Task<ActiveMeasurePoint> DeleteAsync(Guid id)
+        public async Task<ActiveMeasurePoint> DeleteAsync(
+            Guid id)
         {
             try
             {
@@ -81,7 +83,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<IEnumerable<ActiveMeasurePoint>> GetAllAsync()
             => await _context.ActiveMeasurePoints.ToListAsync();
         
-        public async Task<int> SaveBulkAsync(ActiveMeasurePoint[] values)
+        public async Task<int> SaveBulkAsync(
+            ActiveMeasurePoint[] values)
         {
             try
             {

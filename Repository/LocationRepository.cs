@@ -20,10 +20,12 @@ namespace com.b_velop.stack.DataContext.Repository
             _logger = logger;
         }
 
-        public async Task<Location> DeleteAsync(Location value)
+        public async Task<Location> DeleteAsync(
+            Location value)
             => await DeleteAsync(value.Id);
 
-        public async Task<Location> DeleteAsync(Guid id)
+        public async Task<Location> DeleteAsync(
+            Guid id)
         {
             try
             {
@@ -42,7 +44,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<System.Collections.Generic.IEnumerable<Location>> GetAllAsync()
             => await _context.Locations.ToListAsync();
 
-        public async Task<Location> GetAsync(Guid id)
+        public async Task<Location> GetAsync(
+            Guid id)
         {
             try
             {
@@ -56,7 +59,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<Location> SaveAsync(Location value)
+        public async Task<Location> SaveAsync(
+            Location value)
         {
             try
             {
@@ -71,7 +75,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<int> SaveBulkAsync(Location[] values)
+        public async Task<int> SaveBulkAsync(
+            Location[] values)
         {
             try
             {
@@ -86,7 +91,9 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<Location> UpdateAsync(Guid id, Location value)
+        public async Task<Location> UpdateAsync(
+            Guid id, 
+            Location value)
         {
             try
             {
@@ -97,6 +104,7 @@ namespace com.b_velop.stack.DataContext.Repository
                 current.Floor = value.Floor;
                 current.Latitude = value.Latitude;
                 current.Longitude = value.Longitude;
+                current.Updated = DateTimeOffset.Now;
                 await _context.SaveChangesAsync();
                 return current;
             }

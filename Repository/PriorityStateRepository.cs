@@ -20,10 +20,12 @@ namespace com.b_velop.stack.DataContext.Repository
             _logger = logger;
         }
 
-        public async Task<PriorityState> DeleteAsync(PriorityState value)
+        public async Task<PriorityState> DeleteAsync(
+            PriorityState value)
             => await DeleteAsync(value.Id);
 
-        public async Task<PriorityState> DeleteAsync(Guid id)
+        public async Task<PriorityState> DeleteAsync(
+            Guid id)
         {
             try
             {
@@ -42,7 +44,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<IEnumerable<PriorityState>> GetAllAsync()
             => await _context.PriorityStates.ToListAsync();
 
-        public async Task<PriorityState> GetAsync(Guid id)
+        public async Task<PriorityState> GetAsync(
+            Guid id)
         {
             try
             {
@@ -56,7 +59,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<PriorityState> SaveAsync(PriorityState value)
+        public async Task<PriorityState> SaveAsync(
+            PriorityState value)
         {
             try
             {
@@ -71,7 +75,8 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<int> SaveBulkAsync(PriorityState[] values)
+        public async Task<int> SaveBulkAsync(
+            PriorityState[] values)
         {
             try
             {
@@ -86,7 +91,9 @@ namespace com.b_velop.stack.DataContext.Repository
             }
         }
 
-        public async Task<PriorityState> UpdateAsync(Guid id, PriorityState value)
+        public async Task<PriorityState> UpdateAsync(
+            Guid id,
+            PriorityState value)
         {
             try
             {
@@ -95,6 +102,7 @@ namespace com.b_velop.stack.DataContext.Repository
                 current.Point = value.Point;
                 current.State = value.State;
                 current.Timestamp = value.Timestamp;
+                current.Updated = DateTimeOffset.Now;
                 await _context.SaveChangesAsync();
                 return current;
             }
