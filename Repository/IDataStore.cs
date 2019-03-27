@@ -8,6 +8,7 @@ namespace com.b_velop.stack.DataContext.Repository
 
     public interface IDataStore<TType> where TType : IEntity
     {
+        Task<TType> GetAsync(Guid id);
         Task<TType> SaveAsync(TType value);
         Task<TType> UpdateAsync(Guid id, TType value);
         Task<TType> DeleteAsync(TType value);

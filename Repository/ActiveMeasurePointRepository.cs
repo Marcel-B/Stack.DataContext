@@ -32,7 +32,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222, ex, $"Error occurred while saving '{value}'.", value);
+                _logger.LogError(2832, ex, $"Error occurred while inserting '{value}'.", value);
                 return null;
             }
         }
@@ -54,7 +54,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222, ex, $"Error occurred while updating ActiveMeasurePoint '{id}'.", id, value);
+                _logger.LogError(2834, ex, $"Error occurred while updating '{id}'.", id, value);
                 return null;
             }
         }
@@ -73,7 +73,7 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222, ex, $"Error occurred while ''.");
+                _logger.LogError(2833, ex, $"Error occurred while deleting '{id}'.", id);
                 return null;
             }
         }
@@ -91,8 +91,23 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2222,ex, $"Error occurred while SaveBulkAsync", values);
+                _logger.LogError(2835,ex, $"Error occurred while inserting bulk.", values);
                 return -1;
+            }
+        }
+
+        public async Task<ActiveMeasurePoint> GetAsync(
+            Guid id)
+        {
+            try
+            {
+                var current = await _context.ActiveMeasurePoints.FirstOrDefaultAsync(x => x.Id == id);
+                return current;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(2831, ex, $"Error occurred while getting '{id}'.", id);
+                return null;
             }
         }
     }
