@@ -1,8 +1,5 @@
-﻿using com.b_velop.stack.DataContext.Repository;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace com.b_velop.stack.DataContext.Entities
 {
@@ -12,7 +9,12 @@ namespace com.b_velop.stack.DataContext.Entities
 
         public Guid Point { get; set; }
 
+        public DateTimeOffset? Updated { get; set; }
+
         [ForeignKey("Point")]
         public MeasurePoint PointObj { get; set; }
+
+        public override string ToString()
+            => $"MeasureValue:{Id}:{Timestamp}:{Value}:{Point}:{Updated}";
     }
 }

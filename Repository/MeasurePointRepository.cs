@@ -43,16 +43,17 @@ namespace com.b_velop.stack.DataContext.Repository
         {
             try
             {
-                var tmp = await _context.MeasurePoints.FirstOrDefaultAsync(x => x.Id == id);
-                _context.Entry(tmp).State = EntityState.Modified;
-                tmp.Display = value.Display;
-                tmp.Location = value.Location;
-                tmp.Max = value.Max;
-                tmp.Min = value.Min;
-                tmp.Unit = value.Unit;
-                tmp.ExternId = value.ExternId;
+                var current = await _context.MeasurePoints.FirstOrDefaultAsync(x => x.Id == id);
+                _context.Entry(current).State = EntityState.Modified;
+                current.Display = value.Display;
+                current.Location = value.Location;
+                current.Max = value.Max;
+                current.Min = value.Min;
+                current.Unit = value.Unit;
+                current.ExternId = value.ExternId;
+                current.Updated = DateTimeOffset.Now;
                 await _context.SaveChangesAsync();
-                return tmp;
+                return current;
             }
             catch (Exception ex)
             {

@@ -1,9 +1,6 @@
-﻿using com.b_velop.stack.DataContext.Repository;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace com.b_velop.stack.DataContext.Entities
 {
@@ -11,6 +8,10 @@ namespace com.b_velop.stack.DataContext.Entities
     {
         [Key]
         public Guid Id { get; set; }
+
+        public DateTimeOffset? Created { get; set; }
+        public DateTimeOffset? Updated { get; set; }
+
         public string Display { get; set; }
         public double Max { get; set; }
         public double Min { get; set; }
@@ -25,5 +26,7 @@ namespace com.b_velop.stack.DataContext.Entities
         [ForeignKey("Location")]
         public Location LocationObj { get; set; }
 
+        public override string ToString()
+            => $"MeasurePoint:{Id}:{Created}:{ExternId}:{Display}:{Max}:{Min}:{Unit}:{Location}:{Updated}";
     }
 }
