@@ -139,7 +139,26 @@ namespace com.b_velop.stack.DataContext.Repository
             }
             catch (Exception ex)
             {
-                _logger.LogError(2831, ex, $"Error occurred while getting '{pointId}' until '{seconds}' .", pointId);
+                _logger.LogError(2831, ex, $"Error occurred while getting '{pointId}' until '{seconds}' seconds.", pointId, seconds);
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<MeasureValue>> FilterValuesByTimeAsync(
+                int seconds)
+        {
+            try
+            {
+                var current = await Task.Run(() => _context
+                    .MeasureValues
+                    .Where(x => x.Timestamp >= DateTimeOffset.Now.AddSeconds(-seconds))
+                    .OrderByDescending(x => x.Timestamp));
+
+                return current;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(2831, ex, $"Error occurred while getting values until '{seconds}' seconds.", seconds);
                 return null;
             }
         }
