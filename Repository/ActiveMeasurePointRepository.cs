@@ -48,7 +48,7 @@ namespace com.b_velop.stack.DataContext.Repository
                 tmp.IsActive = value.IsActive;
                 tmp.LastValue = value.LastValue;
                 tmp.Point = value.Point;
-                tmp.Updated = value.Updated;
+                tmp.Updated = DateTimeOffset.Now;
                 await _context.SaveChangesAsync();
                 return tmp;
             }

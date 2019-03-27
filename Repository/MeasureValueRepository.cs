@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
-    public class MeasureValueRepository : IDataStore<MeasureValue>
+    public class MeasureValueRepository : IDataStore<MeasureValue>, ITimeDataStore<MeasureValue>
     {
         private readonly MeasureContext _context;
         private readonly ILogger<MeasureValueRepository> _logger;
@@ -118,6 +119,27 @@ namespace com.b_velop.stack.DataContext.Repository
             catch (Exception ex)
             {
                 _logger.LogError(2834, ex, $"Error occurred while updating '{id}'.", id, value);
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<MeasureValue>> FilterPointValuesByTimeAsync(
+            Guid pointId,
+            int seconds)
+        {
+            try
+            {
+                var current = await Task.Run(() => _context
+                  .MeasureValues
+                  .Where(x => x.Point == pointId)
+                  .Where(x => x.Timestamp >= DateTimeOffset.Now.AddSeconds(-seconds))
+                  .OrderByDescending(x => x.Timestamp));
+
+                return current;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(2831, ex, $"Error occurred while getting '{pointId}' until '{seconds}' .", pointId);
                 return null;
             }
         }
