@@ -6,6 +6,7 @@ namespace com.b_velop.stack.DataContext.Entities
     public class BatteryState : TimeType
     {
         public bool State { get; set; }
+        public DateTimeOffset? Created { get; set; }
         public DateTimeOffset? Updated { get; set; }
 
         public Guid Point { get; set; }
@@ -14,6 +15,6 @@ namespace com.b_velop.stack.DataContext.Entities
         public MeasurePoint PointObj { get; set; }
 
         public override string ToString()
-            => $"BatteryState:{Id}:{Timestamp}:{State}:{Updated}:{Point}";
+            => $"BatteryState:{Id}:{Timestamp}:{State}:{Created}:{Updated}:{Point}";
     }
 }
