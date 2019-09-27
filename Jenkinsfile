@@ -2,7 +2,6 @@ node {
 
     def mvnHome
     def commitId
-    // properties([gitLabConnection('GitLab')])
     
     stage('preparation') { 
         checkout scm
@@ -53,8 +52,7 @@ node {
     }
 
     stage('clean'){
-        gitlabCommitStatus("clean") {
          cleanWs()
-    }    
+         githubPRStatusPublisher statusMsg: githubPRMessage('${GITHUB_PR_COND_REF}runended'), statusVerifier: allowRunOnStatus('SUCCESS'), unstableAs: 'SUCCESS'   
     }
 }
