@@ -2,7 +2,7 @@ node {
 
     def mvnHome
     def commitId
-    properties([gitLabConnection('GitLab')])
+    // properties([gitLabConnection('GitLab')])
     
     stage('preparation') { 
         checkout scm
@@ -19,20 +19,20 @@ node {
 
     stage('restore') {
         gitlabCommitStatus("restore") {
-			sh 'dotnet restore --configfile NuGet.config'
-		}
+         sh 'dotnet restore --configfile NuGet.config'
+     }
     }
 
     stage('build'){
         gitlabCommitStatus("build") {
-			sh 'dotnet build'
-		}
+         sh 'dotnet build'
+     }
     }
 
     stage('publish'){
-		gitlabCommitStatus('publish'){
-			sh 'dotnet publish -c Release'
-		}
+     gitlabCommitStatus('publish'){
+         sh 'dotnet publish -c Release'
+     }
     }
 
     stage('tests') {
@@ -43,18 +43,18 @@ node {
 
     if(env.BRANCH_NAME == 'master'){
         stage('package'){
-            gitlabCommitStatus('package'){
-                mvnHome = env.BUILD_NUMBER 
-                packageN = "0.0.${mvnHome}"
+            withCredentials([string(credentialsId: 'NexusNuGetToken', variable: 'token')]) {
+                  mvnHome = env.BUILD_NUMBER 
+                packageN = "1.0.${mvnHome}"
                 sh "dotnet pack -p:PackageVersion=${packageN} -c Release -o ./"
-                sh "dotnet nuget push -s https://nexus.qaybe.de/repository/nuget-hosted/ -k f4aa7680-0f0a-3d31-90c4-97e840c221f5 ./*${packageN}.nupkg"
+                sh "dotnet nuget push -s https://nexus.qaybe.de/repository/nuget-hosted/ -k ${token} ./*${packageN}.nupkg"
             }
         }   
     }
 
     stage('clean'){
         gitlabCommitStatus("clean") {
-			cleanWs()
-	   }	
+         cleanWs()
+    }    
     }
 }
