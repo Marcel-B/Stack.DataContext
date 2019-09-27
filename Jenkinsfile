@@ -45,7 +45,7 @@ node {
         stage('package'){
             withCredentials([string(credentialsId: 'NexusNuGetToken', variable: 'token')]) {
                   mvnHome = env.BUILD_NUMBER 
-                packageN = "0.0.${mvnHome}"
+                packageN = "1.0.${mvnHome}"
                 sh "dotnet pack -p:PackageVersion=${packageN} -c Release -o ./"
                 sh "dotnet nuget push -s https://nexus.qaybe.de/repository/nuget-hosted/ -k ${token} ./*${packageN}.nupkg"
             }
