@@ -53,6 +53,5 @@ node {
 
     stage('clean'){
          cleanWs()
-         githubPRStatusPublisher statusMsg: githubPRMessage('${GITHUB_PR_COND_REF}runended'), statusVerifier: allowRunOnStatus('SUCCESS'), unstableAs: 'SUCCESS'   
     }
 }
