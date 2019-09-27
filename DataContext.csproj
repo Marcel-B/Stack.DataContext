@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>com.b_velop.stack.DataContext</RootNamespace>
+    <PackageId>Stack.DataContext</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
