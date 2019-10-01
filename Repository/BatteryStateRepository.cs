@@ -5,6 +5,7 @@ using com.b_velop.stack.DataContext.Entities;
 using com.b_velop.stack.DataContext.Abstract;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
@@ -94,6 +95,27 @@ namespace com.b_velop.stack.DataContext.Repository
                 _logger.LogError(2815, ex, $"Error occurred while inserting bulk.", values);
                 return -1;
             }
+        }
+
+        public async Task<IEnumerable<BatteryState>> UpdateStatesAsync(
+            IEnumerable<Guid> ids,
+            IEnumerable<DateTimeOffset> timestamps,
+            IEnumerable<bool> states)
+        {
+            var i = 0;
+            var ret = new List<BatteryState>();
+            foreach (var id in ids)
+            {
+                i = ret.Count;
+                var current = await _context.BatteryStates.FirstOrDefaultAsync(x => x.Id == id);
+                _context.Entry(current).State = EntityState.Modified;
+                current.State = states.ElementAt(i);
+                current.Timestamp = timestamps.ElementAt(i);
+                current.Updated = DateTimeOffset.Now;
+                ret.Add(current);
+            }
+            await _context.SaveChangesAsync();
+            return ret;
         }
 
         public async Task<BatteryState> UpdateAsync(
