@@ -12,7 +12,10 @@ namespace com.b_velop.stack.DataContext.Repository
         public ILocationRepository Location { get; set; }
         public IMeasureValueRepository MeasureValue { get; set; }
         public ILinkRepository Link { get; set; }
-
+        public IPriorityStateRepository PriorityState { get; set; }
+        public IUnitRepository Unit { get; set; }
+        public IActiveMeasurePointRepository ActiveMeasurePoint { get; set; }
+        public IBatteryStateRepository BatteryState { get; set; }
 
 
         public RepositoryWrapper(
@@ -21,6 +24,10 @@ namespace com.b_velop.stack.DataContext.Repository
           ILocationRepository location,
           IMeasureValueRepository measureValue,
           ILinkRepository link,
+          IPriorityStateRepository priorityState,
+          IUnitRepository unit,
+          IActiveMeasurePointRepository activeMeasurePoint,
+          IBatteryStateRepository batteryState,
           ILogger<RepositoryWrapper> logger)
         {
             _db = db;
@@ -28,6 +35,10 @@ namespace com.b_velop.stack.DataContext.Repository
             Location = location;
             MeasureValue = measureValue;
             Link = link;
+            PriorityState = priorityState;
+            Unit = unit;
+            ActiveMeasurePoint = activeMeasurePoint;
+            BatteryState = batteryState;
             _logger = logger;
         }
     }
