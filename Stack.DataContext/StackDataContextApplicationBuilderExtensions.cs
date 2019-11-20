@@ -14,6 +14,10 @@ namespace com.b_velop.stack.DataContext
             services.AddScoped<IMeasureValueRepository, MeasureValueRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddScoped<ILinkRepository, LinkRepository>();
+            services.AddScoped<IPriorityStateRepository, PriorityStateRepository>();
+            services.AddScoped<IUnitRepository, UnitRepository>();
+            services.AddScoped<IActiveMeasurePointRepository, ActiveMeasurePointRepository>();
+            services.AddScoped<IBatteryStateRepository, BatteryStateRepository>();
             return services;
         }
         public static IApplicationBuilder UseStackDataContext(
