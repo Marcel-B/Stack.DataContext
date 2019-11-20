@@ -11,6 +11,8 @@ namespace com.b_velop.stack.DataContext.Repository
         public IMeasurePointRepository MeasurePoint { get; set; }
         public ILocationRepository Location { get; set; }
         public IMeasureValueRepository MeasureValue { get; set; }
+        public ILinkRepository Link { get; set; }
+
 
 
         public RepositoryWrapper(
@@ -18,12 +20,14 @@ namespace com.b_velop.stack.DataContext.Repository
           IMeasurePointRepository measurePoint,
           ILocationRepository location,
           IMeasureValueRepository measureValue,
+          ILinkRepository link,
           ILogger<RepositoryWrapper> logger)
         {
             _db = db;
             MeasurePoint = measurePoint;
             Location = location;
             MeasureValue = measureValue;
+            Link = link;
             _logger = logger;
         }
     }
