@@ -13,7 +13,7 @@ namespace com.b_velop.stack.DataContext
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IMeasureValueRepository, MeasureValueRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-
+            services.AddScoped<ILinkRepository, LinkRepository>();
             return services;
         }
         public static IApplicationBuilder UseStackDataContext(
