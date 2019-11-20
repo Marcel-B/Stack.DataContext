@@ -10,6 +10,7 @@ namespace com.b_velop.stack.DataContext
           this IServiceCollection services)
         {
             services.AddScoped<IMeasurePointRepository, MeasurePointRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             return services;
         }

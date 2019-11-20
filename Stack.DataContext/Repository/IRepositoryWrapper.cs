@@ -3,5 +3,6 @@
     public interface IRepositoryWrapper
     {
         IMeasurePointRepository MeasurePoint { get; set; }
+        ILocationRepository Location { get; set; }
     }
 }
