@@ -1,8 +1,5 @@
 ﻿using com.b_velop.stack.DataContext.Abstract;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
@@ -12,14 +9,21 @@ namespace com.b_velop.stack.DataContext.Repository
         private ILogger<RepositoryWrapper> _logger;
 
         public IMeasurePointRepository MeasurePoint { get; set; }
+        public ILocationRepository Location { get; set; }
+        public IMeasureValueRepository MeasureValue { get; set; }
+
 
         public RepositoryWrapper(
           MeasureContext db,
           IMeasurePointRepository measurePoint,
-            ILogger<RepositoryWrapper> logger)
+          ILocationRepository location,
+          IMeasureValueRepository measureValue,
+          ILogger<RepositoryWrapper> logger)
         {
             _db = db;
             MeasurePoint = measurePoint;
+            Location = location;
+            MeasureValue = measureValue;
             _logger = logger;
         }
     }
