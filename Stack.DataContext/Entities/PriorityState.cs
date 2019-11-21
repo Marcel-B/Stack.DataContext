@@ -6,7 +6,6 @@ namespace com.b_velop.stack.DataContext.Entities
     public class PriorityState : TimeType
     {
         public bool State { get; set; }
-        public DateTimeOffset? Updated { get; set; }
 
         public Guid Point { get; set; }
 

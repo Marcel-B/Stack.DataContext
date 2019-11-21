@@ -9,8 +9,6 @@ namespace com.b_velop.stack.DataContext.Entities
 
         public Guid Point { get; set; }
 
-        public DateTimeOffset? Updated { get; set; }
-
         [ForeignKey("Point")]
         public MeasurePoint PointObj { get; set; }
 

@@ -4,14 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace com.b_velop.stack.DataContext.Entities
 {
-    public class MeasurePoint : IEntity
+    public class MeasurePoint : Entity
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        public DateTimeOffset? Created { get; set; }
-        public DateTimeOffset? Updated { get; set; }
-
         public string Display { get; set; }
         public double Max { get; set; }
         public double Min { get; set; }

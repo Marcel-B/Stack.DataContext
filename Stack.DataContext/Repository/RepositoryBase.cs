@@ -35,6 +35,7 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<T> InsertAsync(
             T entity)
         {
+            entity.Created = DateTimeOffset.Now;
             var result = await Db.Set<T>().AddAsync(entity);
             _ = Db.SaveChanges();
             return result.Entity;
@@ -43,6 +44,7 @@ namespace com.b_velop.stack.DataContext.Repository
         public T Update(
             T entity)
         {
+            entity.Updated = DateTimeOffset.Now;
             var result = Db.Set<T>().Update(entity);
             _ = Db.SaveChanges();
             return result.Entity;
@@ -51,6 +53,10 @@ namespace com.b_velop.stack.DataContext.Repository
         public IEnumerable<T> UpdateBunch(
             IEnumerable<T> entities)
         {
+            foreach (var entity in entities)
+            {
+                entity.Updated = DateTimeOffset.Now;
+            }
             Db.Set<T>().UpdateRange(entities.ToArray());
             _ = Db.SaveChanges();
             return entities;
@@ -59,6 +65,10 @@ namespace com.b_velop.stack.DataContext.Repository
         public async Task<IEnumerable<T>> InsertBunchAsync(
             IEnumerable<T> entities)
         {
+            foreach (var entity in entities)
+            {
+                entity.Created = DateTimeOffset.Now;
+            }
             await Db.Set<T>().AddRangeAsync(entities);
             _ = Db.SaveChanges();
             return entities;

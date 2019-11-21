@@ -3,13 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace com.b_velop.stack.DataContext.Entities
 {
-    public class Location : IEntity
+    public class Location : Entity
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        public DateTimeOffset? Created { get; set; }
-        public DateTimeOffset? Updated { get; set; }
         public string Display { get; set; }
         public string Description { get; set; }
         public double? Longitude { get; set; }
