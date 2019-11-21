@@ -1,6 +1,7 @@
 ﻿using com.b_velop.stack.DataContext.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace com.b_velop.stack.DataContext.Abstract
 {
@@ -22,6 +23,13 @@ namespace com.b_velop.stack.DataContext.Abstract
             DbContextOptions<MeasureContext> context) : base(context)
         {
             _logger = logger;
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            if (modelBuilder == null)
+                throw new ArgumentNullException(nameof(modelBuilder));
+            modelBuilder.Seed();
         }
     }
 }
