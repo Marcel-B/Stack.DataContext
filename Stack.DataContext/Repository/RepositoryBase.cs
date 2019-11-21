@@ -47,5 +47,13 @@ namespace com.b_velop.stack.DataContext.Repository
             _ = Db.SaveChanges();
             return result.Entity;
         }
+
+        public IEnumerable<T> UpdateBunch(
+            IEnumerable<T> etnities)
+        {
+            Db.Set<T>().UpdateRange(etnities.ToArray());
+            _ = Db.SaveChanges();
+            return etnities;
+        }
     }
 }
