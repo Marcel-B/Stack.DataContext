@@ -49,11 +49,19 @@ namespace com.b_velop.stack.DataContext.Repository
         }
 
         public IEnumerable<T> UpdateBunch(
-            IEnumerable<T> etnities)
+            IEnumerable<T> entities)
         {
-            Db.Set<T>().UpdateRange(etnities.ToArray());
+            Db.Set<T>().UpdateRange(entities.ToArray());
             _ = Db.SaveChanges();
-            return etnities;
+            return entities;
+        }
+
+        public async Task<IEnumerable<T>> InsertBunchAsync(
+            IEnumerable<T> entities)
+        {
+            await Db.Set<T>().AddRangeAsync(entities);
+            _ = Db.SaveChanges();
+            return entities;
         }
     }
 }

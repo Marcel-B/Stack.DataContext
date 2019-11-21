@@ -13,6 +13,7 @@ namespace com.b_velop.stack.DataContext.Repository
         Task<IEnumerable<T>> SelectByConditionAsync(Expression<Func<T, bool>> expression);
         Task<T> SelectByIdAsync(Guid id);
         T Update(T entity);
-        IEnumerable<T> UpdateBunch(IEnumerable<T> etnities);
+        IEnumerable<T> UpdateBunch(IEnumerable<T> entities);
+        Task<IEnumerable<T>> InserBunchAsync(IEnumerable<T> entities);
     }
 }
