@@ -14,6 +14,6 @@ namespace com.b_velop.stack.DataContext.Repository
         Task<T> SelectByIdAsync(Guid id);
         T Update(T entity);
         IEnumerable<T> UpdateBunch(IEnumerable<T> entities);
-        Task<IEnumerable<T>> InserBunchAsync(IEnumerable<T> entities);
+        Task<IEnumerable<T>> InsertBunchAsync(IEnumerable<T> entities);
     }
 }
