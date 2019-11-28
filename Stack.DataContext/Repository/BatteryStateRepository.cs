@@ -1,13 +1,13 @@
 ﻿using com.b_velop.stack.DataContext.Entities;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using com.b_velop.stack.DataContext.Abstract;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
     public class BatteryStateRepository : RepositoryBase<BatteryState>, IBatteryStateRepository
     {
         public BatteryStateRepository(
-            DbContext context,
+            MeasureContext context,
             ILogger<BatteryStateRepository> logger) : base(context, logger) { }
 
         //public async Task<IEnumerable<BatteryState>> UpdateStatesAsync(

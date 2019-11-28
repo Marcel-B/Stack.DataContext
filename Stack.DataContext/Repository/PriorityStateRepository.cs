@@ -1,13 +1,13 @@
 ﻿using com.b_velop.stack.DataContext.Entities;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
+using com.b_velop.stack.DataContext.Abstract;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
     public class PriorityStateRepository : RepositoryBase<PriorityState>, IPriorityStateRepository
     {
         public PriorityStateRepository(
-            DbContext context,
+            MeasureContext context,
             ILogger<PriorityStateRepository> logger) : base(context, logger)
         { }
     }

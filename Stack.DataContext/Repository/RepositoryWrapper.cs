@@ -1,12 +1,11 @@
 ﻿using com.b_velop.stack.DataContext.Abstract;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private DbContext _db;
+        private MeasureContext _db;
         private ILogger<RepositoryWrapper> _logger;
 
         public IMeasurePointRepository MeasurePoint { get; set; }
@@ -21,7 +20,7 @@ namespace com.b_velop.stack.DataContext.Repository
 
 
         public RepositoryWrapper(
-          DbContext db,
+          MeasureContext db,
           IMeasurePointRepository measurePoint,
           ILocationRepository location,
           IMeasureValueRepository measureValue,

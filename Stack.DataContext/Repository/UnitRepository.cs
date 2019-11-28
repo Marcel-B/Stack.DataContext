@@ -1,5 +1,5 @@
-﻿using com.b_velop.stack.DataContext.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using com.b_velop.stack.DataContext.Abstract;
+using com.b_velop.stack.DataContext.Entities;
 using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Repository
@@ -7,7 +7,7 @@ namespace com.b_velop.stack.DataContext.Repository
     public class UnitRepository : RepositoryBase<Unit>, IUnitRepository
     {
         public UnitRepository(
-            DbContext context,
+            MeasureContext context,
             ILogger<UnitRepository> logger) : base(context, logger)
         {
         }
