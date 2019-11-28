@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using com.b_velop.stack.DataContext.Abstract;
+﻿using com.b_velop.stack.DataContext.Abstract;
 using com.b_velop.stack.DataContext.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Repository
