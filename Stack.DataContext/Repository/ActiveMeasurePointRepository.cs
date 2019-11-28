@@ -1,5 +1,5 @@
-﻿using com.b_velop.stack.DataContext.Abstract;
-using com.b_velop.stack.DataContext.Entities;
+﻿using com.b_velop.stack.DataContext.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace com.b_velop.stack.DataContext.Repository
@@ -8,7 +8,7 @@ namespace com.b_velop.stack.DataContext.Repository
     {
 
         public ActiveMeasurePointRepository(
-            MeasureContext context,
+            DbContext context,
             ILogger<ActiveMeasurePointRepository> logger) : base(context, logger)
         {
 

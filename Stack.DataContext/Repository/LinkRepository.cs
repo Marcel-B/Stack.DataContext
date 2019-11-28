@@ -1,13 +1,13 @@
 ﻿using com.b_velop.stack.DataContext.Entities;
 using Microsoft.Extensions.Logging;
-using com.b_velop.stack.DataContext.Abstract;
+using Microsoft.EntityFrameworkCore;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
     public class LinkRepository : RepositoryBase<Link>, ILinkRepository
     {
         public LinkRepository(
-            MeasureContext measureContext,
+            DbContext measureContext,
             ILogger<LinkRepository> logger) : base(measureContext, logger)
         {
         }

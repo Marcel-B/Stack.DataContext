@@ -1,13 +1,13 @@
 ﻿using com.b_velop.stack.DataContext.Entities;
-using com.b_velop.stack.DataContext.Abstract;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
     public class LocationRepository : RepositoryBase<Location>, ILocationRepository
     {
         public LocationRepository(
-            MeasureContext context,
+            DbContext context,
             ILogger<LocationRepository> logger) : base(context, logger)
         {
         }
