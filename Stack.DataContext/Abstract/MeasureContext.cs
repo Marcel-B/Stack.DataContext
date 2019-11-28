@@ -17,6 +17,7 @@ namespace com.b_velop.stack.DataContext.Abstract
         public DbSet<PriorityState> PriorityStates { get; set; }
         public DbSet<ActiveMeasurePoint> ActiveMeasurePoints { get; set; }
         public DbSet<Link> Links { get; set; }
+        public DbSet<AirUser> AirUsers { get; set; }
 
         public MeasureContext(
             ILogger<MeasureContext> logger,

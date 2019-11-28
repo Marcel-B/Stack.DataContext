@@ -17,6 +17,7 @@ namespace com.b_velop.stack.DataContext.Repository
         public IUnitRepository Unit { get; set; }
         public IActiveMeasurePointRepository ActiveMeasurePoint { get; set; }
         public IBatteryStateRepository BatteryState { get; set; }
+        public IAirUserRepository AirUser { get; set; }
 
 
         public RepositoryWrapper(
@@ -29,6 +30,7 @@ namespace com.b_velop.stack.DataContext.Repository
           IUnitRepository unit,
           IActiveMeasurePointRepository activeMeasurePoint,
           IBatteryStateRepository batteryState,
+          IAirUserRepository airUser,
           ILogger<RepositoryWrapper> logger)
         {
             _db = db;
@@ -40,6 +42,7 @@ namespace com.b_velop.stack.DataContext.Repository
             Unit = unit;
             ActiveMeasurePoint = activeMeasurePoint;
             BatteryState = batteryState;
+            AirUser = airUser;
             _logger = logger;
         }
     }
