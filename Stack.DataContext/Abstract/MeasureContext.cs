@@ -20,7 +20,7 @@ namespace com.b_velop.stack.DataContext.Abstract
 
         public MeasureContext(
             ILogger<MeasureContext> logger,
-            DbContextOptions<MeasureContext> context) : base(context)
+            DbContextOptions context) : base(context)
         {
             _logger = logger;
         }

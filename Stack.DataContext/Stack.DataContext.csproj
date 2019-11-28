@@ -13,4 +13,8 @@
     <PackageReference Include="NLog.StructuredLogging.Json" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Repository\IStackUserRepository.cs" />
+    <Compile Remove="Entities\StackUser.cs" />
+  </ItemGroup>
 </Project>
