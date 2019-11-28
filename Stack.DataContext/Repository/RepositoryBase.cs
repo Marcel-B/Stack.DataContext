@@ -1,4 +1,5 @@
-﻿using com.b_velop.stack.DataContext.Entities;
+﻿using com.b_velop.stack.DataContext.Abstract;
+using com.b_velop.stack.DataContext.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,11 +12,11 @@ namespace com.b_velop.stack.DataContext.Repository
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class, IEntity
     {
-        protected DbContext Db;
+        protected MeasureContext Db;
         private readonly ILogger<RepositoryBase<T>> _logger;
 
         protected RepositoryBase(
-            DbContext db,
+            MeasureContext db,
             ILogger<RepositoryBase<T>> logger)
         {
             Db = db;
