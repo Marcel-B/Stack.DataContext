@@ -10,5 +10,6 @@
         IPriorityStateRepository PriorityState { get; set; }
         IActiveMeasurePointRepository ActiveMeasurePoint { get; set; }
         IBatteryStateRepository BatteryState { get; set; }
+        IAirUserRepository AirUser { get; set; }
     }
 }

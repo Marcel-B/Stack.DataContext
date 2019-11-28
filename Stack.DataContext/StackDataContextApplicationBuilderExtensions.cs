@@ -6,7 +6,7 @@ namespace com.b_velop.stack.DataContext
 {
     public static class StackDataContextApplicationBuilderExtensions
     {
-        public static IServiceCollection UseStackDataContext(
+        public static IServiceCollection AddStackRepositories(
           this IServiceCollection services)
         {
             services.AddScoped<IMeasurePointRepository, MeasurePointRepository>();
@@ -18,6 +18,7 @@ namespace com.b_velop.stack.DataContext
             services.AddScoped<IUnitRepository, UnitRepository>();
             services.AddScoped<IActiveMeasurePointRepository, ActiveMeasurePointRepository>();
             services.AddScoped<IBatteryStateRepository, BatteryStateRepository>();
+            services.AddScoped<IAirUserRepository, AirUserRepository>();
             return services;
         }
         public static IApplicationBuilder UseStackDataContext(
