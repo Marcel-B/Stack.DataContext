@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using com.b_velop.stack.DataContext.Abstract;
-using com.b_velop.stack.DataContext.Entities;
+﻿using com.b_velop.stack.DataContext.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -11,7 +7,7 @@ namespace com.b_velop.stack.DataContext.Repository
     public class UnitRepository : RepositoryBase<Unit>, IUnitRepository
     {
         public UnitRepository(
-            MeasureContext context,
+            DbContext context,
             ILogger<UnitRepository> logger) : base(context, logger)
         {
         }

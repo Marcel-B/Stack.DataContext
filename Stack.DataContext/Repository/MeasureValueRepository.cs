@@ -1,11 +1,6 @@
-﻿using com.b_velop.stack.DataContext.Abstract;
-using com.b_velop.stack.DataContext.Entities;
+﻿using com.b_velop.stack.DataContext.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace com.b_velop.stack.DataContext.Repository
 {
@@ -13,7 +8,7 @@ namespace com.b_velop.stack.DataContext.Repository
     {
         public MeasureValueRepository(
             ILogger<MeasureValueRepository> logger,
-            MeasureContext context) : base(context, logger)
+            DbContext context) : base(context, logger)
         { 
         }
 
